@@ -13,7 +13,7 @@ def get_workout_data():
     conn = sqlite3.connect('workouts_data.db')
     c = conn.cursor()
     c.execute("""
-                SELECT w.title, w.date, e.exercise, e.set_number, e.weight, e.reps
+                SELECT w.title, w.date, w.id, e.exercise, e.set_number, e.weight, e.reps
                 FROM workouts w
                 JOIN exercises e ON w.id = e.workout_id
               """)
@@ -23,11 +23,13 @@ def get_workout_data():
     # Organize the workouts into dictionary
     workouts = {}
     for row in rows:
-        title, date, exercise, set_number, weight, reps = row
-        if (title, date) not in workouts:
-            workouts[(title, date)] = []
-        workouts[(title, date)].append((exercise, set_number, weight, reps))
+        title, date, id, exercise, set_number, weight, reps = row
+        if (title, date, id) not in workouts:
+            workouts[(title, date, id)] = []
+        workouts[(title, date, id)].append((exercise, set_number, weight, reps))
 
+    # Sort the workouts by date then id
+    workouts = dict(sorted(workouts.items(), key=lambda x: (x[0][1], x[0][2])))
     return workouts
 
 

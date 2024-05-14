@@ -9,32 +9,41 @@
 <body>
     <button id="add-new-workout-btn">Add New Workout</button>
     <form id="add-workout-form" action="/add_workout" method="post">
-        <textarea name="workout_data" rows="50", cols="100"></textarea>
+        <textarea name="workout_data" rows="50" , cols="100"></textarea>
         <input type="submit" value="Submit Workout">
     </form>
 
+
+    {% set ns = namespace(current_exercise='') %}
+
     {% for workout, exercises in workout_data.items() %}
-    <h2>{{ workout[0] }} - {{ workout[1] }}</h2>
-    <table>
+        <h2>{{ workout[0] }}- {{ workout[1] }} - {{ workout[2] }}</h2>
+        <div class="workout">
+    {% for exercise in exercises %}
+        {% if exercise[0] != ns.current_exercise %}
+        {% if ns.current_exercise != '' %}
+            </table>
+        {% endif %}
+        <h3>{{ exercise[0] }}</h3>
+        <table>
+            <tr>
+                <th>Set Number</th>
+                <th>Weight</th>
+                <th>Reps</th>
+            </tr>
+            {% set ns.current_exercise = exercise[0] %}
+        {% endif %}
         <tr>
-            <th>Exercise</th>
-            <th>Set Number</th>
-            <th>Weight</th>
-            <th>Reps</th>
-        </tr>
-        {% for exercise in exercises %}
-        <tr>
-            <td>{{ exercise[0] }}</td>
             <td>{{ exercise[1] }}</td>
             <td>{{ exercise[2] }}</td>
             <td>{{ exercise[3] }}</td>
         </tr>
-        {% endfor %}
+    {% endfor %}
     </table>
     <br>
     {% endfor %}
 
-        <script src="{{ url_for('static', filename='hide.js') }}"></script>
+    <script src="{{ url_for('static', filename='hide.js') }}"></script>
 </body>
 
 </html>
