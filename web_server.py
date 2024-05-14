@@ -44,10 +44,13 @@ def add_workout():
     conn = sqlite3.connect('workouts_data.db')
     c = conn.cursor()
     workout_data = request.form['workout_data']
-    parse_workout.parse_workout(workout_data, conn, c)
+    succesfully_added_workout = parse_workout.parse_workout(workout_data, conn, c)
     conn.commit()
     conn.close()
-    return 'Workout added successfully!'
+    if succesfully_added_workout:
+        return "success"
+    else:
+        return "failure"
 
 
 # Run the app
