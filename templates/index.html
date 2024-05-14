@@ -2,31 +2,54 @@
 <html>
 
 <head>
-    <title>Workout Data</title>
+    <title>Workouts</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1>Workout Data</h1>
-    <table border="1">
+    {% for workout, exercises in workout_data.items() %}
+    <h2>{{ workout[0] }} - {{ workout[1] }}</h2>
+    <table>
         <tr>
-            <th>Title</th>
-            <th>Date</th>
             <th>Exercise</th>
             <th>Set Number</th>
             <th>Weight</th>
             <th>Reps</th>
         </tr>
-        {% for row in workout_data %}
+        {% for exercise in exercises %}
         <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] }}</td>
-            <td>{{ row[3] }}</td>
-            <td>{{ row[4] }}</td>
-            <td>{{ row[5] }}</td>
+            <td>{{ exercise[0] }}</td>
+            <td>{{ exercise[1] }}</td>
+            <td>{{ exercise[2] }}</td>
+            <td>{{ exercise[3] }}</td>
         </tr>
         {% endfor %}
     </table>
-</body>
+    <br>
+    {% endfor %}
 
+
+</body>
 </html>

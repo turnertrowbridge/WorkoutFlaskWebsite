@@ -11,7 +11,7 @@ def setup_database():
               CREATE TABLE IF NOT EXISTS workouts(
                   id INTEGER PRIMARY KEY AUTOINCREMENT,
                   title TEXT,
-                  date TEXT,
+                  date TEXT
                  )
               """)
 

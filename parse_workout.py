@@ -7,7 +7,7 @@ def parse_workout(workout, conn, c):
     date = lines[1]
 
     # Add the workout to the database
-    c.execute("INSERT INTO workouts VALUES (?, ?)", (title, date))
+    c.execute("INSERT INTO workouts (title, date) VALUES (?, ?)", (title, date))
     workout_id = c.lastrowid
 
     exercise = None
@@ -24,6 +24,6 @@ def parse_workout(workout, conn, c):
             reps = int(match.group(3))
 
             # Insert the workout data into the database
-            c.execute("INSERT INTO exercies VALUES (?, ?, ?, ?, ?)",
+            c.execute("INSERT INTO exercises (workout_id, exercise, set_number, weight, reps) VALUES (?, ?, ?, ?, ?)",
                       (workout_id, exercise, set_number, weight, reps))
             conn.commit()
