@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Workout Data</title>
+</head>
+
+<body>
+    <h1>Workout Data</h1>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Exercise</th>
+            <th>Set Number</th>
+            <th>Weight</th>
+            <th>Reps</th>
+        </tr>
+        {% for row in workout_data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
