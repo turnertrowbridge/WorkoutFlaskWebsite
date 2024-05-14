@@ -27,3 +27,6 @@ def parse_workout(workout, conn, c):
             c.execute("INSERT INTO exercises (workout_id, exercise, set_number, weight, reps) VALUES (?, ?, ?, ?, ?)",
                       (workout_id, exercise, set_number, weight, reps))
             conn.commit()
+
+        if line.startswith(" http"):
+            break

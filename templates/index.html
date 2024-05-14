@@ -3,32 +3,16 @@
 
 <head>
     <title>Workouts</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
-
-        th,
-        td {
-            padding: 15px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
+    <button id="add-new-workout-btn">Add New Workout</button>
+    <form id="add-workout-form" action="/add_workout" method="post">
+        <textarea name="workout_data" rows="50", cols="100"></textarea>
+        <input type="submit" value="Submit Workout">
+    </form>
+
     {% for workout, exercises in workout_data.items() %}
     <h2>{{ workout[0] }} - {{ workout[1] }}</h2>
     <table>
@@ -50,6 +34,7 @@
     <br>
     {% endfor %}
 
-
+        <script src="{{ url_for('static', filename='hide.js') }}"></script>
 </body>
+
 </html>

@@ -33,10 +33,10 @@ def setup_database():
 
 def create_db():
     setup_database()
-    with open('workout.txt') as f:
-        workout = f.read()
-
-    conn = sqlite3.connect('workouts_data.db')
-    c = conn.cursor()
-    parse_workout.parse_workout(workout, conn, c)
-    conn.close()
+#    with open('workout.txt') as f:
+#        workout = f.read()
+#
+#    conn = sqlite3.connect('workouts_data.db')
+#    c = conn.cursor()
+#    parse_workout.parse_workout(workout, conn, c)
+#    conn.close()

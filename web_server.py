@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import sqlite3
 import create_db
+import parse_workout
 
 # Create a Flask app
 app = Flask(__name__)
@@ -35,6 +36,18 @@ def get_workout_data():
 def index():
     workout_data = get_workout_data()
     return render_template('index.html', workout_data=workout_data)
+
+
+# Form to add a workout
+@app.route('/add_workout', methods=['POST'])
+def add_workout():
+    conn = sqlite3.connect('workouts_data.db')
+    c = conn.cursor()
+    workout_data = request.form['workout_data']
+    parse_workout.parse_workout(workout_data, conn, c)
+    conn.commit()
+    conn.close()
+    return 'Workout added successfully!'
 
 
 # Run the app
