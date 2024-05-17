@@ -55,6 +55,12 @@ def add_workout():
         return "failure"
 
 
+# Let's user visualize the data with graphs
+@app.route('/visualize')
+def visualize():
+    return render_template('visualize.html')
+
+
 # Run the app
 if __name__ == '__main__':
     create_db.create_db()

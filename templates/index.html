@@ -4,9 +4,31 @@
 <head>
     <title>Workouts</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='returnToTopBtn.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 
 <body>
+    <div id="top"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Workouts</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('visualize') }}">Visualize</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
     <button id="add-new-workout-btn">Add New Workout</button>
     <form id="add-workout-form" action="/add_workout" method="post">
         <textarea name="workout_data" rows="50" , cols="100"></textarea>
@@ -40,10 +62,19 @@
         </tr>
     {% endfor %}
     </table>
+    </div>
     <br>
     {% endfor %}
 
+
+    <button id="return-to-top-btn" >Return to Top</button>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='hide.js') }}"></script>
+    <script src="{{ url_for('static', filename='returnToTopBtn.js') }}"></script>
 </body>
 
 </html>

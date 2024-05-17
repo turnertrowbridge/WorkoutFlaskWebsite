@@ -1,0 +1,16 @@
+#return-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+
+#return-to-top-btn:hover {
+  background-color: #0069d9;
+}
