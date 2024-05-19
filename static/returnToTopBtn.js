@@ -1,7 +1,7 @@
 const returnToTopBtn = document.getElementById('return-to-top-btn');
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 200) {
+    if (window.scrollY > 0) {
         returnToTopBtn.style.display = 'block';
     } else {
         returnToTopBtn.style.display = 'none';
