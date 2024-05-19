@@ -43,7 +43,7 @@
     {% set ns = namespace(current_exercise='') %}
 
     {% for workout, exercises in workout_data.items() %}
-        <h2>{{ workout[0] }}- {{ workout[1] }} - {{ workout[2] }}</h2>
+        <h2>{{ workout[0] }}- {{ workout[1] }}</h2>
         <button class="delete-workout-btn" data-workout-id="{{ workout[2] }}">Delete Workout</button>
         <div class="workout">
     {% for exercise in exercises %}
