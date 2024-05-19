@@ -6,6 +6,7 @@ import parse_workout
 import plotly
 import plotly.graph_objs as go
 import json
+from datetime import datetime
 
 
 # Create a Flask app
@@ -28,13 +29,16 @@ def get_workout_data():
     workouts = {}
     for row in rows:
         title, date, id, exercise, set_number, weight, reps = row
+        date = date.replace('\u202f', ' ').replace('\r', '').strip()
+
         if (title, date, id) not in workouts:
             workouts[(title, date, id)] = []
         workouts[(title, date, id)].append(
             (exercise, set_number, weight, reps))
 
     # Sort the workouts by date then id
-    workouts = dict(sorted(workouts.items(), key=lambda x: (x[0][1], x[0][2])))
+    # workouts = dict(sorted(workouts.items(), key=lambda x: (x[0][1], x[0][2])))
+    workouts = dict(sorted(workouts.items(), key=lambda x: datetime.strptime(x[0][1], '%A, %B %d, %Y at %I:%M %p'), reverse=True))
     return workouts
 
 
