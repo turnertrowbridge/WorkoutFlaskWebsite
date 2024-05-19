@@ -2,9 +2,18 @@
 <html>
 
 <head>
-<title>Graph Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualize Workouts</title>
 </head>
 
 <body>
-    Hi
+    <h1>Workout Visualizations</h1>
+    {% for workout_id, workout in workouts.items() %}
+        <h2>{{ workout_id[0] }} - {{ workout_id[1] }}</h2>
+        <img src="{{ url_for('static', filename='workout_{}.png'.format(workout_id[2])) }}" alt="Workout Graph">
+        <script>console.log("{{ workout_id }}")</script>
+    {% endfor %}
 </body>
+
+</html>
