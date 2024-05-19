@@ -26,7 +26,8 @@ def get_workout_data():
         title, date, id, exercise, set_number, weight, reps = row
         if (title, date, id) not in workouts:
             workouts[(title, date, id)] = []
-        workouts[(title, date, id)].append((exercise, set_number, weight, reps))
+        workouts[(title, date, id)].append(
+            (exercise, set_number, weight, reps))
 
     # Sort the workouts by date then id
     workouts = dict(sorted(workouts.items(), key=lambda x: (x[0][1], x[0][2])))
@@ -46,7 +47,8 @@ def add_workout():
     conn = sqlite3.connect('workouts_data.db')
     c = conn.cursor()
     workout_data = request.form['workout_data']
-    succesfully_added_workout = parse_workout.parse_workout(workout_data, conn, c)
+    succesfully_added_workout = parse_workout.parse_workout(
+        workout_data, conn, c)
     conn.commit()
     conn.close()
     if succesfully_added_workout:
@@ -55,7 +57,18 @@ def add_workout():
         return "failure"
 
 
-# Let's user visualize the data with graphs
+# Define a route to delete a workout
+@app.route('/delete_workout/<int:workout_id>', methods=['DELETE'])
+def delete_workout(workout_id):
+    conn = sqlite3.connect('workouts_data.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM workouts WHERE id = ?", (workout_id,))
+    conn.commit()
+    conn.close()
+    return "Workout deleted successfully"
+
+
+# Let user visualize the data with graphs
 @app.route('/visualize')
 def visualize():
     return render_template('visualize.html')
