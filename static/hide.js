@@ -9,14 +9,14 @@ document.getElementById('add-workout-form').addEventListener('submit', function(
         method: 'POST',
         body: formData
     })
-    .then(response => response.text())
-    .then(data => {
-        if (data === 'success') {
-            alert('Workout added successfully!');
-        } else {
-            alert('Failed to add workout.');
-        }
-        window.location.reload();
-    })
-    .catch(error => console.error('Error:', error));
+        .then(response => response.text())
+        .then(data => {
+            if (data === 'success') {
+                alert('Workout added successfully!');
+            } else {
+                alert('Failed to add workout.');
+            }
+            window.location.reload();
+        })
+        .catch(error => console.error('Error:', error));
 });

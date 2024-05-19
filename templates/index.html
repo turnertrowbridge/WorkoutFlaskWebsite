@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workouts</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='returnToTopBtn.css') }}">
@@ -31,8 +33,10 @@
 
     <button id="add-new-workout-btn">Add New Workout</button>
     <form id="add-workout-form" action="/add_workout" method="post">
-        <textarea name="workout_data" rows="50" , cols="100"></textarea>
+        <textarea name="workout_data" rows="40", cols="100"></textarea>
+        <br>
         <input type="submit" value="Submit Workout">
+        <button id="cancel-add-workout-btn">Cancel</button>
     </form>
 
 
